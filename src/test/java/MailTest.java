@@ -17,7 +17,7 @@ public class MailTest {
     private static final String META_URL = "https://meta.ua";
     private static final String EMAIL = "artem.rud.softserve@meta.ua";
     private static final String CHECK_EMAIL = "\"Rud Artem\" <artem.rud.softserve@meta.ua>";
-
+    private static final String CHECK_THEME = "Study Hard";
     @Before
     public void setUP() {
         System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\chromedriver.exe");
@@ -56,8 +56,9 @@ public class MailTest {
         WebElement message = driver.findElement(By.xpath("//*[text()='Study Hard']"));
         message.click();
         WebElement checkMail = driver.findElement(By.xpath("//*[@id='from_line']/table/tbody/tr[1]/td[2]/span"));
-
+        WebElement checkTheme = driver.findElement(By.xpath("//*[@id=\"add_link\"]/div[1]/h1"));
+        Assert.assertEquals(checkTheme.getText(),CHECK_THEME);
         Assert.assertEquals(checkMail.getText(), CHECK_EMAIL);
-        System.out.println("Otpravitel" + checkMail.getText());
+
     }
 }
